@@ -1,27 +1,26 @@
 import requests
 
 # Funzione per la registrazione
-def register():
-    lat1 = input("Inserisci la prima latitudine ")
-    lon1 = input("Inserisci la prima longitudine ")
-    lat2 = input("Inserisci la seconda latitudine ")
-    lon2 = input("Inserisci la seconda longitudine ")
+def login():
+    username = "utente1"
+    password = "password1"
+
 
     data = {
-        "lat1": lat1,
-        "lon1": lon1,
-        "lat2": lat2,
-        "lon2": lon2
+        "username": username,
+        "password": password,
     }
 
-    response = requests.post("http://localhost:3000/calcolo", json=data)
+    response = requests.post("http://localhost:3000/login", json=data)
 
     if response.status_code == 200:
-        print("distanza calcolata con successo!")
-        print("metri: " + str(response.json()))
+        print("login effettuato con successo!")
+        print(str(response.json()))
         # Ottieni il token dalla risposta
     else:
-        print("Errore durante il calcolo")
+        print("Errore durante l'accesso")
+        print(response.status_code)
+        print(response.text)
 
 
-register();
+login()
